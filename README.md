@@ -1,4 +1,4 @@
-# springboot_board
+# springboot_CRUDboard
 
 <목표>
 springboot 경험해보기
