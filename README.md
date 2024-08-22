@@ -1,8 +1,8 @@
 # springboot_CRUDboard
 
-<목표>
-springboot 경험해보기
-CRUD 게시판 만들기
+<목표><br>
+springboot 경험해보기<br>
+CRUD 게시판 만들기<br>
 
 <구현기능>
 회원가입, 로그인
