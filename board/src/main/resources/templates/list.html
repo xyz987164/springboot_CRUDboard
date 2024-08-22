@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+</head>
+<body>
+<table>
+    session 값 확인: <p th:text="${session.loginEmail}"></p>
+    <a href="/member/memberupdate">내 정보 수정하기</a><br>
+    <a href="/member/logout">로그아웃</a><br>
+    <button onclick="saveReq()">글작성</button>
+    <button onclick="pagingReq()">페이징목록</button>
+</table>
+<script>
+    //  function saveReq() {
+    //
+    //  }
+      const saveReq = () => {
+        location.href = "/board/save";
+      }
+      const pagingReq = () => {
+        location.href = "/board/paging";
+      }
+
+</script>
+</body>
+</html>

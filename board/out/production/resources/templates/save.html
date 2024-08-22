@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>save</title>
+</head>
+<body>
+<form id="boardForm" action="/board/save" method="post" enctype="multipart/form-data">
+    writer: <input type="text" id="boardWriter" name="boardWriter" th:value="${session.loginEmail}" readonly> <br>
+    title: <input type="text" name="boardTitle"> <br>
+    contents: <textarea id="boardContents" name="boardContents" ></textarea> <br> <!--cols="30" rows="10"-->
+    <input type="submit" value="글작성">
+    <button type="button" onclick="infinityMonkey()">변환하기</button>
+</form>
+<script>
+    function infinityMonkey() {
+        const contents = document.getElementById("boardContents").value;
+        const words = contents.split(" ");
+        const list = [];
+
+        let wordIndex = 0;
+        while (wordIndex < words.length) {
+            const word = words[wordIndex];
+            const length = word.length;
+
+            let randomLetter;
+            if (Math.random() < 0.5) {
+                randomLetter = word.charAt(Math.floor(Math.random() * length));
+            } else {
+                randomLetter = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+            }
+
+            list.push(randomLetter);
+
+            if (list.length >= length) {
+                const startIndex = list.length - length;
+                let match = true;
+
+                for (let i = 0; i < length; i++) {
+                    if (list[startIndex + i] !== word.charAt(i)) {
+                        match = false;
+                        break;
+                    }
+                }
+
+                if (match) {
+                    let fullList = '';
+                    for (let i = 0; i < list.length; i++) {
+                        fullList += list[i];
+                        if (i > 0 && (i + 1) % 30 === 0) {
+                            fullList += "\n";
+                        }
+                    }
+                    fullList += ` (${word})\n`;
+                    wordIndex++;
+                }
+            }
+        }
+
+        document.getElementById("boardContents").value = list.join('');
+    }
+</script>
+</body>
+</html>
